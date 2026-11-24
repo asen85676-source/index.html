@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Web Games Arcade - Play Online</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: #0d1117;
+      color: #f0f6fc;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    header {
+      width: 100%;
+      background: #161b22;
+      border-bottom: 1px solid #30363d;
+      padding: 16px 20px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+    header h1 {
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      background: linear-gradient(90deg, #58a6ff, #3fb950, #ff9f1c);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    header p {
+      font-size: 13px;
+      color: #8b949e;
+      margin-top: 4px;
+    }
+
+    /* Top Adsterra Banner Slot (728x90 Desktop / 320x50 Mobile) */
+    .ad-banner-top {
+      width: 100%;
+      max-width: 728px;
+      min-height: 50px;
+      margin: 16px auto 8px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px dashed #30363d;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      color: #8b949e;
+      overflow: hidden;
+      padding: 4px;
+    }
+
+    main {
+      width: 100%;
+      max-width: 960px;
+      padding: 16px;
+      flex: 1;
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: #c9d1d9;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 20px;
+    }
+
+    .game-card {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .game-card:hover {
+      transform: translateY(-4px);
+      border-color: #58a6ff;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+    }
+
+    .game-thumb {
+      height: 155px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      font-size: 54px;
+    }
+    .thumb-swerve {
+      background: linear-gradient(135deg, #f9d8dc 0%, #1a2138 100%);
+    }
+    .thumb-surfer {
+      background: linear-gradient(135deg, #0077b6 0%, #00b4d8 100%);
+    }
+    .thumb-coming {
+      background: linear-gradient(135deg, #21262d 0%, #30363d 100%);
+      font-size: 42px;
+    }
+
+    .badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(0, 0, 0, 0.7);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .badge-hot {
+      background: #ff4757;
+    }
+    .badge-new {
+      background: #2ed573;
+      color: #0d1117;
+    }
+
+    .game-info {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .game-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: #f0f6fc;
+      margin-bottom: 6px;
+    }
+    .game-desc {
+      font-size: 13px;
+      color: #8b949e;
+      line-height: 1.45;
+      margin-bottom: 16px;
+      flex: 1;
+    }
+
+    .play-btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      background: #238636;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 15px;
+      padding: 12px;
+      border-radius: 10px;
+      letter-spacing: 0.5px;
+      transition: background 0.15s ease, transform 0.1s ease;
+    }
+    .play-btn:hover {
+      background: #2ea043;
+    }
+    .play-btn:active {
+      transform: scale(0.97);
+    }
+    .play-btn.disabled {
+      background: #21262d;
+      color: #8b949e;
+      pointer-events: none;
+    }
+
+    /* Bottom Adsterra Banner Slot (320x50) */
+    .ad-banner-bottom {
+      width: 320px;
+      height: 50px;
+      margin: 24px auto 12px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px dashed #30363d;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      color: #8b949e;
+      overflow: hidden;
+    }
+
+    footer {
+      width: 100%;
+      text-align: center;
+      padding: 16px;
+      font-size: 12px;
+      color: #8b949e;
+      border-top: 1px solid #21262d;
+      margin-top: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🎮 MINI ARCADE PORTAL</h1>
+    <p>Instant Free HTML5 Games • Mobile & Desktop Ready</p>
+  </header>
+
+  <!-- TOP ADSTERRA BANNER SLOT -->
+  <div class="ad-banner-top">
+    <!-- YAHAN APNA ADSTERRA TOP BANNER (320x50 ya 728x90) SCRIPT PASTE KAREIN -->
+    Top Adsterra Banner Slot (320x50 / 728x90)
+  </div>
+
+  <main>
+    <div class="section-title">🔥 Featured Games</div>
+
+    <div class="games-grid">
+      <!-- Game 1: SWERVE Football -->
+      <div class="game-card">
+        <div class="game-thumb thumb-swerve">
+          <span class="badge badge-hot">HOT</span>
+          ⚽
+        </div>
+        <div class="game-info">
+          <div class="game-title">SWERVE Football</div>
+          <div class="game-desc">
+            Curved 3D track par football ko swerve karein, matching colors hit karein aur color-changing ramps par jump lagayein!
+          </div>
+          <!-- Make sure your Swerve game file is named swerve.html in the same folder -->
+          <a href="swerve.html" class="play-btn">▶ PLAY NOW</a>
+        </div>
+      </div>
+
+      <!-- Game 2: Ocean Surfer -->
+      <div class="game-card">
+        <div class="game-thumb thumb-surfer">
+          <span class="badge badge-new">NEW</span>
+          🏄‍♂️
+        </div>
+        <div class="game-info">
+          <div class="game-title">Ocean Surfer</div>
+          <div class="game-desc">
+            Samundar ki lehron par surf karein, sharks aur rocks se bachein, aur starfish collect karke high score banayein!
+          </div>
+          <!-- Make sure your Surfing game file is named surfing.html in the same folder -->
+          <a href="surfing.html" class="play-btn">▶ PLAY NOW</a>
+        </div>
+      </div>
+
+      <!-- Future Game Slot Template -->
+      <div class="game-card">
+        <div class="game-thumb thumb-coming">
+          <span class="badge">SOON</span>
+          🚀
+        </div>
+        <div class="game-info">
+          <div class="game-title">Next Arcade Game</div>
+          <div class="game-desc">
+            Naya game jald aa raha hai! Naya game add karne ke liye bas is card ko copy karke link badlein.
+          </div>
+          <a href="#" class="play-btn disabled">COMING SOON</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOTTOM ADSTERRA BANNER SLOT -->
+    <div class="ad-banner-bottom">
+      <!-- YAHAN APNA ADSTERRA 320x50 BANNER SCRIPT PASTE KAREIN -->
+      Bottom Adsterra Banner Slot (320x50)
+    </div>
+  </main>
+
+  <footer>
+    © 2026 Mini Arcade Portal • Play Free Web Games Anywhere
+  </footer>
+
+</body>
+</html>
